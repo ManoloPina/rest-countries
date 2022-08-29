@@ -13,4 +13,16 @@ export const theme = createTheme({
       light: "#ffffff",
     },
   },
+  typography: {
+    fontFamily: [
+      "Nunito Sans",
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+  },
 });

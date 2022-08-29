@@ -1,8 +1,11 @@
 import { Container } from "@mui/material";
 import styled from "styled-components";
 
-export const AppContainer = styled(Container)`
+export const AppContainer = styled(Container).attrs({
+  maxWidth: "lg",
+})`
   && {
-    border: blue solid 1px;
+    height: 100%;
+    padding-top: 6rem;
   }
 `;

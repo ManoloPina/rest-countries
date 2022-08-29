@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 //Styles
 import * as S from "./styles";
 import { theme } from "components/layout/theme";
 //Components
 import { ThemeProvider } from "@mui/material";
+//Components
+import { Home } from "pages/Home";
+import { Detailed } from "pages/Detailed";
 import { Header } from "components/layout/Header";
 //Types
 import { ROUTES } from "constants";
@@ -19,14 +23,12 @@ const App: React.FC = ({}) => {
         <S.AppContainer>
           <Header />
           <Routes>
-            <Route index element={<h1>Home</h1>} />
-            <Route
-              path={ROUTES.DETAILED}
-              element={<h1 style={{ color: "white" }}>Detailed Country</h1>}
-            />
+            <Route index element={<Home />} />
+            <Route path={ROUTES.DETAILED} element={<Detailed />} />
           </Routes>
         </S.AppContainer>
       </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
