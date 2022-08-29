@@ -1,4 +1,5 @@
 import React from "react";
+import { usePagination } from "hooks";
 //Styles
 import * as S from "./styles";
 //Types
@@ -12,6 +13,7 @@ const Card: React.FC<Props> = React.memo(({ country }) => {
   return (
     <S.CardContainer>
       <S.FlagImage src={country.flags.png} />
+      <S.Name>{country.name.common}</S.Name>
     </S.CardContainer>
   );
 });

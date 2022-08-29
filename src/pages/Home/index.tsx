@@ -1,5 +1,5 @@
 import React from "react";
-import { useCountries } from "hooks";
+import { useCountries, usePagination } from "hooks";
 //Components
 import { Card } from "./Card";
 import { Skeleton } from "@mui/material";
@@ -8,15 +8,30 @@ import * as S from "./styles";
 
 interface Props {}
 
+const ROWS = 20;
+
 const Home: React.FC<Props> = ({}) => {
   const { countries, isLoading } = useCountries();
+  const { currPage, startIndex, endIndex } = usePagination({
+    pageSize: ROWS,
+    totalItens: countries?.length || 0,
+  });
 
   return (
     <S.HomeContainer>
-      <S.Title>Home</S.Title>
-      {!!countries &&
-        countries.length > 0 &&
-        countries.map((country) => <Card country={country} />)}
+      {!!countries && countries.length > 0 && !isLoading ? (
+        <S.CountryListContainer>
+          {countries.slice(startIndex, endIndex).map((country) => (
+            <Card key={country.idd.root} country={country} />
+          ))}
+        </S.CountryListContainer>
+      ) : (
+        <S.CountryListContainer>
+          {[...Array(20)].map((i) => (
+            <Skeleton key={i} height="32rem" width="20rem" animation="wave" />
+          ))}
+        </S.CountryListContainer>
+      )}
     </S.HomeContainer>
   );
 };
